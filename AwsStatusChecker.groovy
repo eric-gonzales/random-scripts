@@ -32,13 +32,13 @@ try {
 	def feed = new XmlSlurper(false, false).parse(r).channel.item.first()
 	def title = feed.title.toString()
 	if (title.startsWith('Service is operating normally') || title.startsWith('Service disruption: [RESOLVED]')) {
-	status = 'AWS OK'
+	    status = 'AWS OK'
 	} else if (title.startsWith('Informational Message') || title.startsWith('Performance Issues')) {
-	status = 'AWS Warning'
+	    status = 'AWS Warning'
 	} else if (title.startsWith('Service disruption')) {
-	status = 'AWS Critical'
+	    status = 'AWS Critical'
 	} else {
-	status = 'AWS Unknown'
+	    status = 'AWS Unknown'
 	}
     }
 } catch (FileNotFoundException e) {
